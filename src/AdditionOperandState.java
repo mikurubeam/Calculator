@@ -10,7 +10,6 @@ public class AdditionOperandState extends State {
 
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) {
-
         if (c == null) {
             calculatorContext.setCurrentTotal(calculatorContext.getCurrentTotal() + calculatorContext.getOperand());
             calculatorContext.setState(CompleteState.instance());

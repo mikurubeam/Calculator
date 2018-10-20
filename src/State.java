@@ -2,7 +2,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class State {
-
     public boolean isComplete() {
         return false;
     }

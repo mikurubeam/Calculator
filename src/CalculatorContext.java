@@ -58,6 +58,10 @@ public class CalculatorContext {
     }
 
     private void run() {
+        if (this.isVerbose()) {
+            System.out.println(this);
+        }
+
         try {
             Character c;
             int i = 0;
@@ -90,23 +94,26 @@ public class CalculatorContext {
 
     public static void main(String[] args) {
         List<CalculatorContext> contextList = new ArrayList<>();
-        contextList.add(new CalculatorContext("1+2+3+4"));
-        contextList.add(new CalculatorContext("11+12+13+14"));
-        contextList.add(new CalculatorContext("1234"));
-        contextList.add(new CalculatorContext("11+12-13-14"));
-        contextList.add(new CalculatorContext("112+123+134+145"));
-        contextList.add(new CalculatorContext("112+123-134-145"));
-        contextList.add(new CalculatorContext("01"));
-        contextList.add(new CalculatorContext("1+02"));
-        contextList.add(new CalculatorContext("1++2"));
-        contextList.add(new CalculatorContext("1.2"));
-        contextList.add(new CalculatorContext("1/2"));
-        contextList.add(new CalculatorContext("1*2"));
-        contextList.add(new CalculatorContext("1%2"));
-        contextList.add(new CalculatorContext("1+2+3+4+"));
-        contextList.add(new CalculatorContext("1+2+3+4*"));
-        contextList.add(new CalculatorContext("-1+2+3+4*"));
-        contextList.add(new CalculatorContext("+1+2+3+4*"));
+        contextList.add(new CalculatorContext("100+20-70-50", true));
+//        contextList.add(new CalculatorContext("11+12+13+14"));
+//        contextList.add(new CalculatorContext("1234"));
+//        contextList.add(new CalculatorContext("11+12-13-14"));
+//        contextList.add(new CalculatorContext("112+123+134+145"));
+//        contextList.add(new CalculatorContext("112+123-134-145"));
+//        contextList.add(new CalculatorContext("01"));
+//        contextList.add(new CalculatorContext("1+02"));
+//        contextList.add(new CalculatorContext("1++2"));
+//        contextList.add(new CalculatorContext("1+-2"));
+//        contextList.add(new CalculatorContext("1-+2"));
+//        contextList.add(new CalculatorContext("1--2"));
+//        contextList.add(new CalculatorContext("1.2"));
+//        contextList.add(new CalculatorContext("1/2"));
+//        contextList.add(new CalculatorContext("1*2"));
+//        contextList.add(new CalculatorContext("1%2"));
+//        contextList.add(new CalculatorContext("1+2+3+4+"));
+//        contextList.add(new CalculatorContext("1+2+3+4*"));
+//        contextList.add(new CalculatorContext("-1+2+3+4*"));
+//        contextList.add(new CalculatorContext("+1+2+3+4*"));
 
         for (CalculatorContext calculatorContext : contextList) {
             calculatorContext.run();
@@ -118,6 +125,6 @@ public class CalculatorContext {
         return "Input String:\t" + this.inputString + "\n"
                 + "Current Total:\t" + this.currentTotal + "\n"
                 + "Operand:\t" + this.operand + "\n"
-                + "State:\t" + this.state.getClass().getName() + "\n";
+                + "Next State:\t" + this.state.getClass().getName() + "\n";
     }
 }
