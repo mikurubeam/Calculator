@@ -7,6 +7,7 @@ public class CalculatorContext {
     private State state = InitialState.instance();
     private boolean verbose = false;
     private String inputString;
+    private String errorMessage;
 
     public CalculatorContext(String inputString) {
         this.inputString = inputString;
@@ -33,6 +34,10 @@ public class CalculatorContext {
         this.operand = operand;
     }
 
+    public void updateOperand(int operand) {
+        this.operand = this.operand*10 + operand;
+    }
+
     public State getState() {
         return state;
     }
@@ -51,6 +56,14 @@ public class CalculatorContext {
 
     public String getInputString() {
         return inputString;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     private void executeOperation(Character c) throws Exception {
@@ -94,26 +107,26 @@ public class CalculatorContext {
 
     public static void main(String[] args) {
         List<CalculatorContext> contextList = new ArrayList<>();
-        contextList.add(new CalculatorContext("100+20-70-50", true));
-//        contextList.add(new CalculatorContext("11+12+13+14"));
-//        contextList.add(new CalculatorContext("1234"));
-//        contextList.add(new CalculatorContext("11+12-13-14"));
-//        contextList.add(new CalculatorContext("112+123+134+145"));
-//        contextList.add(new CalculatorContext("112+123-134-145"));
-//        contextList.add(new CalculatorContext("01"));
-//        contextList.add(new CalculatorContext("1+02"));
-//        contextList.add(new CalculatorContext("1++2"));
-//        contextList.add(new CalculatorContext("1+-2"));
-//        contextList.add(new CalculatorContext("1-+2"));
-//        contextList.add(new CalculatorContext("1--2"));
-//        contextList.add(new CalculatorContext("1.2"));
-//        contextList.add(new CalculatorContext("1/2"));
-//        contextList.add(new CalculatorContext("1*2"));
-//        contextList.add(new CalculatorContext("1%2"));
-//        contextList.add(new CalculatorContext("1+2+3+4+"));
-//        contextList.add(new CalculatorContext("1+2+3+4*"));
-//        contextList.add(new CalculatorContext("-1+2+3+4*"));
-//        contextList.add(new CalculatorContext("+1+2+3+4*"));
+        contextList.add(new CalculatorContext("100+20-70-50"));
+        contextList.add(new CalculatorContext("11+12+13+14"));
+        contextList.add(new CalculatorContext("1234"));
+        contextList.add(new CalculatorContext("11+12-13-14"));
+        contextList.add(new CalculatorContext("112+123+134+145"));
+        contextList.add(new CalculatorContext("112+123-134-145"));
+        contextList.add(new CalculatorContext("01"));
+        contextList.add(new CalculatorContext("1+02"));
+        contextList.add(new CalculatorContext("1++2"));
+        contextList.add(new CalculatorContext("1+-2"));
+        contextList.add(new CalculatorContext("1-+2"));
+        contextList.add(new CalculatorContext("1--2"));
+        contextList.add(new CalculatorContext("1.2"));
+        contextList.add(new CalculatorContext("1/2"));
+        contextList.add(new CalculatorContext("1*2"));
+        contextList.add(new CalculatorContext("1%2"));
+        contextList.add(new CalculatorContext("1+2+3+4+"));
+        contextList.add(new CalculatorContext("1+2+3+4*"));
+        contextList.add(new CalculatorContext("-1+2+3+4*"));
+        contextList.add(new CalculatorContext("+1+2+3+4*"));
 
         for (CalculatorContext calculatorContext : contextList) {
             calculatorContext.run();
