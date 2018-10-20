@@ -7,7 +7,7 @@ public class ErrorState extends State {
 
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) throws Exception {
-        calculatorContext.setState(State.factory("Complete"));
+        calculatorContext.setState(CompleteState.instance());
         throw new Exception(this.errorMessage);
     }
 }

@@ -1,16 +1,24 @@
 public class InitialAdditionState extends State {
+    protected static InitialAdditionState singleton;
+
+    public synchronized static InitialAdditionState instance() {
+        if (singleton == null) {
+            singleton = new InitialAdditionState();
+        }
+        return singleton;
+    }
+
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) {
-        calculatorContext.setCurrentTotal(calculatorContext.getCurrentTotal() + calculatorContext.getOperand());
         if (c == null) {
             calculatorContext.setState(
                     new ErrorState(
-                            String.format("Invalid trailing operator (%c) (%s)", c, calculatorContext.getInputString())
+                            String.format("Invalid trailing operator (+) (%s)", calculatorContext.getInputString())
                     )
             );
         } else if (isInputMatch("[1-9]", c)) {
-            calculatorContext.setOperand(calculatorContext.getOperand()*10 + Integer.parseInt(c.toString()));
-            calculatorContext.setState(State.factory("AdditionOperand"));
+            calculatorContext.setOperand(Integer.parseInt(c.toString()));
+            calculatorContext.setState(AdditionOperandState.instance());
         } else {
             calculatorContext.setState(
                     new ErrorState(

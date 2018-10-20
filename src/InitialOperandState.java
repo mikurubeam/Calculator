@@ -1,14 +1,23 @@
-public class InitialTotalState extends State {
+public class InitialOperandState extends State {
+    protected static InitialOperandState singleton;
+
+    public synchronized static InitialOperandState instance() {
+        if (singleton == null) {
+            singleton = new InitialOperandState();
+        }
+        return singleton;
+    }
+
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) {
         if (c == null) {
-            calculatorContext.setState(State.factory("Complete"));
+            calculatorContext.setState(CompleteState.instance());
         } else if (isInputMatch("[0-9]", c)) {
             calculatorContext.setCurrentTotal(calculatorContext.getCurrentTotal()*10 + Integer.parseInt(c.toString()));
         } else if (isInputMatch("[+]", c)) {
-            calculatorContext.setState(State.factory("InitialAddition"));
+            calculatorContext.setState(InitialAdditionState.instance());
         } else if (isInputMatch("[-]", c)) {
-            calculatorContext.setState(State.factory("InitialSubtraction"));
+            calculatorContext.setState(InitialSubtractionState.instance());
         } else {
             calculatorContext.setState(
                     new ErrorState(

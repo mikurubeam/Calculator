@@ -1,4 +1,13 @@
 public class CompleteState extends State {
+    protected static CompleteState singleton;
+
+    public synchronized static CompleteState instance() {
+        if (singleton == null) {
+            singleton = new CompleteState();
+        }
+        return singleton;
+    }
+
     @Override
     public boolean isComplete() {
         return true;
