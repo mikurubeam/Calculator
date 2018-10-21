@@ -11,4 +11,9 @@ public class InitialAdditionState extends InitialBranchState {
         }
         return singleton;
     }
+
+    @Override
+    protected void moveToOperandState(CalculatorContext calculatorContext) {
+        calculatorContext.setState(AdditionOperandState.instance());
+    }
 }

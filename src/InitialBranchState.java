@@ -1,6 +1,8 @@
 public abstract class InitialBranchState extends State {
     protected String trailingOperatorErrorMessage;
 
+    protected abstract void moveToOperandState(CalculatorContext calculatorContext);
+
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) {
         if (c == null) {
@@ -10,7 +12,8 @@ public abstract class InitialBranchState extends State {
             calculatorContext.setState(ErrorState.instance());
         } else if (isInputMatch("[1-9]", c)) {
             calculatorContext.setOperand(Integer.parseInt(c.toString()));
-            calculatorContext.setState(SubtractionOperandState.instance());
+            this.moveToOperandState(calculatorContext);
+//            calculatorContext.setState(SubtractionOperandState.instance());
         } else {
             calculatorContext.setErrorMessage(
                     String.format("Invalid leading character (%c) (%s)", c, calculatorContext.getInputString())

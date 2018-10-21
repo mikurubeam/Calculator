@@ -11,4 +11,9 @@ public class InitialSubtractionState extends InitialBranchState {
         }
         return singleton;
     }
+
+    @Override
+    protected void moveToOperandState(CalculatorContext calculatorContext) {
+        calculatorContext.setState(SubtractionOperandState.instance());
+    }
 }

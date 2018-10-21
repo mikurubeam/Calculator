@@ -1,6 +1,5 @@
 public abstract class ComputeState extends State {
     protected abstract void computeCurrentTotal(CalculatorContext calculatorContext);
-
     @Override
     public void operation(Character c, CalculatorContext calculatorContext) {
         boolean willUpdate = true;
@@ -23,7 +22,7 @@ public abstract class ComputeState extends State {
         }
 
         if (willUpdate) {
-            computeCurrentTotal(calculatorContext);
+            this.computeCurrentTotal(calculatorContext);
         }
 
         printContext(calculatorContext);
