@@ -1,9 +1,9 @@
-public class SubtractionOperandState extends ComputeState {
-    protected static SubtractionOperandState singleton;
+public class SubtractionAccumulatorState extends AccumulatorState {
+    protected static SubtractionAccumulatorState singleton;
 
-    public synchronized static SubtractionOperandState instance() {
+    public synchronized static SubtractionAccumulatorState instance() {
         if (singleton == null) {
-            singleton = new SubtractionOperandState();
+            singleton = new SubtractionAccumulatorState();
         }
         return singleton;
     }

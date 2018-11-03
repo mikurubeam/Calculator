@@ -4,7 +4,7 @@ import java.util.List;
 public class CalculatorContext {
     private int currentTotal = 0;
     private int operand = 0;
-    private State state = InitialState.instance();
+    private State state = AdditionInitialState.instance();
     private boolean verbose = false;
     private String inputString;
     private String errorMessage;

@@ -1,9 +1,9 @@
-public class AdditionOperandState extends ComputeState {
-    protected static AdditionOperandState singleton;
+public class AdditionAccumulatorState extends AccumulatorState {
+    protected static AdditionAccumulatorState singleton;
 
-    public synchronized static AdditionOperandState instance() {
+    public synchronized static AdditionAccumulatorState instance() {
         if (singleton == null) {
-            singleton = new AdditionOperandState();
+            singleton = new AdditionAccumulatorState();
         }
         return singleton;
     }
